@@ -13,7 +13,7 @@ import {
 const UserList = () => {
   const dispatch = useDispatch();
   const { users, loading, error } = useSelector((state) => state.user);
-
+  //   console.log(users);
   useEffect(() => {
     const fetchData = async () => {
       dispatch(fetchUsersStart());
@@ -39,8 +39,10 @@ const UserList = () => {
   };
 
   const handleUpdateUser = async (userId, updatedUserData) => {
+    // console.log(userId);
     try {
       const response = await axios.put(`/api/users/${userId}`, updatedUserData);
+      console.log(response.data);
       dispatch(updateUser(response.data));
     } catch (err) {
       console.error("Error updating user:", err.message);
